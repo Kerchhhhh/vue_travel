@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<!-- 用具体姓名标签替换内容 -->
+		<cpn><span slot="center">标题</span></cpn>
+		<cpn><button slot="left">返回</button></cpn>
+		<!-- 编译的作用域 -->
+		<cpn v-show="isShow"><span>默认</span></cpn>
+	</div>
+</body>
+
+<template id="cpn">
+	<div>
+		<slot name="left"><span>left</span></slot>
+		<slot name="right"><span>right</span></slot>
+		<slot name="center"><span>center</span></slot>
+		<slot>fff</slot>
+		<button v-show="isShow">wff</button>
+	</div>
+</template>
+
+<script src="/vue.js"></script>
+<script>
+	const app = new Vue({
+		el: '#app',
+		data: {
+			message: '你好啊',
+			isShow: true,
+		},
+		components: {
+			cpn: {
+				template: '#cpn',
+				data() {
+					return {
+						isShow: false,
+					}
+				}
+			}
+		}
+	})
+</script>
+
+</html>

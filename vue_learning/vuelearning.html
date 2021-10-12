@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		[v-cloak] {
+			display: none;
+		}
+
+		.active{
+			color: red;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<h1>{{message}}</h1>
+		<h2 >{{counter}}</h2>
+		
+		<button @click="add">+</button>
+		<h3 v-html="url"></h3>
+		<!-- <h4 :style = "getStyle()">{{message}}</h4>
+		<h4 :style = "[baseStyle, moreStyle]">{{message}}</h4> -->
+		<p>{{fullName}}</p>
+		<button  @click = "btnClick(123, $event)">按钮</button>
+
+		<br>
+		<br>
+		<span v-if="isShow">
+			<label for="userEmail">用户邮箱</label>
+			<input type="text" id="userEmail" placeholder="用户邮箱" key="email">
+		</span>
+		<span v-else>
+			<label for="userName">用户账号</label>
+			<input type="text" id="userName" placeholder="用户账号" key="name">
+		</span>
+		<button @click="handleToggle()">切换类型</button>
+		<h2 v-show="isShow">v-show</h2>
+		<h2 v-if='isShow'>v-if</h2>
+		<ul>
+			<li v-for="(value, index) in items" 
+		    	:class="{active: currentIndex === index}" 
+			    @click="liClick(index)">
+					{{index}} {{value}}
+			</li>
+		</ul>
+		<input type="text" v-model.lazy="message">
+		<br>
+		<label for="male">
+			<input type="radio" id="male" value="男" v-model="sex">男
+		</label>
+		<label for="female">
+			<input type="radio" id="femal" value="女" v-model="sex">女
+		</label>
+		<p>你是个{{sex}}孩</p>
+		<label for="agreeement">
+			<input type="checkbox" id="agreement" v-model="isAgree">同意协议
+		</label>
+		<p>你选择的是{{isAgree}}</p>
+		<button :disabled="!isAgree">下一步</button>
+		<br>
+		<input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+		<input type="checkbox" value="足球" v-model="hobbies">足球
+		<input type="checkbox" value="篮球" v-model="hobbies">篮球
+		<input type="checkbox" value="排球" v-model="hobbies">排球
+		<p>你选择的是{{hobbies}}</p>
+		<br>
+		<label v-for="item in originHobbies" for="item">
+			<input type="checkbox" :value="item" id="item" v-model="hobbies">{{item}}
+		</label>
+
+	</div>
+	
+</body>
+
+
+<script src="/vue.js"></script>
+<script>
+	const app = new Vue({
+		el: '#app',
+		data: {
+			message: "hello",
+			counter: 0,
+			url: '<a href="http://www.baidu.com">百度一下</a>',
+			size: 100,
+			baseStyle: {fontSize: '100px'},
+			moreStyle: {color: 'red'},
+			firstName: "kebo",
+			lastName: "bryant",
+			isShow: true,
+			items:['dd','ss','xx'],
+			currentIndex: 0,
+			sex: '女',
+			isAgree: 'false',
+			hobbies: [],
+			originHobbies: ['hi','dd','ss'],
+		},
+		computed: {
+			fullName: {
+				set: function(newValue) {
+					names = newValue.split(' ');
+					this.firstName = names[0];
+					this.lastName = names[1];
+				},
+				get: function(){
+					return this.firstName + ' ' + this.lastName;
+				}	,
+			},
+		},
+		methods: {
+			add(){
+				console.log("执行中"),
+				this.counter++
+			},
+			sub() {
+				console.log("减法");
+				this.counter--
+			},
+			getStyle() {
+				return {fontSize: this.size + 'px'}
+			},
+			btnClick(num, event) {
+				console.log(num, event);
+			},
+			btnClick(){
+
+			},
+			divClick() {
+
+			},
+			handleToggle() {
+				return this.isShow = !this.isShow
+			},
+			liClick(index) {
+				this.currentIndex = index
+			},
+		}
+	})
+
+
+</script>
+
+</html>

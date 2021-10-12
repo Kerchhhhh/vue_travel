@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<!-- 基本使用 默认值-->
+		<cpn></cpn>
+		<!-- 多个值替换 -->
+		<cpn><span>加了东西</span></cpn>
+		<cpn>
+			<i>加了很多东西</i>
+			<span>又加了很多东西</span>
+		</cpn>
+	</div>
+</body>
+
+<template id="cpn">
+	<div>
+		<h2>我是组件</h2>
+		<p>我是组件，哈哈哈</p>
+		<slot><button>按钮</button></slot>
+	</div>
+</template>
+
+<script src="/vue.js"></script>
+<script>
+	const app = new Vue({
+		el: '#app',
+		data: {
+			message: '你好啊',
+		},
+		components: {
+			cpn: {
+				template: '#cpn',
+			}
+		}
+	})
+</script>
+</html>
