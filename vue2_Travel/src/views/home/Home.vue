@@ -6,7 +6,7 @@
 			</div>
 			<div slot="center" class="center">
 				<span class="iconfont icon-input">&#xe67d;</span>
-				<input type="text" class="header-input" placeholder="输入搜索内容">
+				<input type="text" class="header-input" value="输入搜索内容">
 			</div>
 			<div slot="right" class="right">
 				<span class="iconfont">&#xe686;</span>
@@ -65,14 +65,16 @@ export default {
 .center input {
 	flex: 1;
 	border: 0px;
-	padding: 10px 2px;
+	padding: 10px 15px;
 	border-radius: 0 5px 5px 0;
+	color: gray;
 }
 
 .center span {
 	width: 15%;
-	/* background-color: #aaa; */
 	box-sizing: border-box;
+	background-color: #eee;
+	padding: 5px;
 }
 
 .right {
